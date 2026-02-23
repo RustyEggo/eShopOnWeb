@@ -4,16 +4,9 @@ param location string = resourceGroup().location
 
 var appServicePlanName = toLower('AppServicePlan-${webAppName}')
 
-resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
-  name: appServicePlanName
-  location: location
-  properties: {
-    reserved: true
-  }
-  sku: {
-    name: sku
-  }
-}
+@description('Name of an existing App Service Plan allowed by policy')
+param existingAppServicePlanName string
+
 resource appService 'Microsoft.Web/sites@2022-09-01' = {
   name: webAppName
   kind: 'app'
