@@ -12,7 +12,7 @@ resource appService 'Microsoft.Web/sites@2022-09-01' = {
   kind: 'app'
   location: location
   properties: {
-    serverFarmId: appServicePlan.id
+    serverFarmId: resourceId('Microsoft.Web/serverfarms', existingAppServicePlanName)
     siteConfig: {
       linuxFxVersion: 'DOTNETCORE|8.0'
       appSettings: [
@@ -28,3 +28,4 @@ resource appService 'Microsoft.Web/sites@2022-09-01' = {
     }
   }
 }
+
